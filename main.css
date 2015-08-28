@@ -1,0 +1,30 @@
+body {
+    padding: 50px;
+}
+
+.heading {
+    padding: 40px 15px;
+}
+
+.chart {
+    padding: 0 0 25px 0;
+}
+
+.image-bg-fluid-height {
+    opacity: .8;
+    position: relative;
+}
+
+#manarola {
+    background: url('images/manarola.jpg') no-repeat center center scroll;
+    height: 750px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+#pisa {
+    background: url('images/pisa.png') no-repeat center bottom scroll;
+    background-size: cover;
+    padding: 50px;
+    min-height: 500px;
+}

@@ -1,172 +1,263 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
-<style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fietstocht Poperinge - Pisa</title>
 
-  /*
-  .chart rect {
-    fill: steelblue;
-  }
-  */
-  .chart .legend {
-    fill: black;
-    font: 14px sans-serif;
-    text-anchor: start;
-    font-size: 12px;
-  }
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <div class="image-bg-fluid-height" id="pisa">
 
-  .chart text {
-    fill: white;
-    font: 10px sans-serif;
-    text-anchor: end;
-  }
+  </div>
 
-  .chart .label {
-    fill: black;
-    font: 14px sans-serif;
-    text-anchor: end;
-  }
+  <div class="container">
 
-  .bar:hover {
-    fill: brown;
-  }
+    <div class="heading">
+      <h1>Poperinge &mdash; Pisa</h1>
+      <p class="lead">
+        Op 9 augustus 2015 vertrokken we met z'n drie&euml;n richting Pisa. Twaalf dagen
+         en 1435km verder kwamen we toe. Deze pagina geeft het verloop van de hele tocht weer.
+      </p>
+    </div>
 
-  .axis path,
-  .axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
-  }
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="chart_distance" class="chart"></div>
+      </div>
+    </div>
 
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="chart_max" class="chart"></div>
+      </div>
+    </div>
 
-</style>
-<svg class="chart"></svg>
-<script src="http://d3js.org/d3.v3.min.js"></script>
-<script>
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="chart_avg" class="chart"></div>
+      </div>
+    </div>
 
-  var data = {
-    labels: [
-      'Poperinge - St.-Quentin', 'St.-Quentin - Châlons-en-Champagne', 'Châlons-en-Champagne - Neufchâteau',
-      'Neufchâteau - Ventron', 'Ventron - Basel', 'Basel - Morschach', 'Morschach - Bellinzona', 'Bellinzona - Milano',
-      'Milano - Genova', 'Genova - La Spezia', 'La Spezia - Pisa'
-    ],
-    series: [{
-        label: 'Aantal km\'s',
-        values: [141.44, 142.18, 168.31, 115.31, 109.30, 138.51, 144.24, 108.49, 164.10, 121.71, 81.85]
-      }, {
-        label: 'Maximale snelheid (km/u)',
-        values: [59.9, 61.8, 53.6, 59.2, 59, 70, 46.3, 59.7, 48.6, 50.6, 43.1, 23.1]
-      }, {
-        label: 'Gemiddelde snelheid (km/u)',
-        values: [26.1, 27.1, 22.6, 22.1, 21, 23.4, 19.2, 21.6, 22.1, 22.3, 23.1]
-      }, {
-        label: 'Kostprijs overnachting (EUR)',
-        values: [20, 18.7, 25, 10, 27.6, 69, 64.4, 20, 11, 45,.5, 0]
-      }]
-  };
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="chart_cost" class="chart"></div>
+      </div>
+    </div>
 
-  var chartWidth       = 500,
-      barHeight        = 20,
-      groupHeight      = barHeight * data.series.length,
-      gapBetweenGroups = 10,
-      spaceForLabels   = 300,
-      spaceForLegend   = 250;
+    <div class="row">
+      <div class="col-sm-12">
+        <div id="chart_overview" class="chart"></div>
+      </div>
+    </div>
+  </div>
 
-  // Zip the series data together (first values, second values, etc.)
-  var zippedData = [];
-  for (var i=0; i<data.labels.length; i++) {
-    for (var j=0; j<data.series.length; j++) {
-      zippedData.push(data.series[j].values[i]);
+<div class="image-bg-fluid-height" id="manarola">&nbsp;</div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <p class="text-center">
+          <em>Grazie e arrivederci!</em>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script>if (!window.jQuery) { document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>'); }</script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+  <script>
+    google.load('visualization', '1', {packages: ['corechart', 'bar']});
+    google.setOnLoadCallback(drawTitleSubtitle);
+
+    function drawTitleSubtitle() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Dag');
+      data.addColumn('number', 'Afstand in km');
+      data.addColumn('number', 'Maximale snelheid (km/u)');
+      data.addColumn('number', 'Gemiddelde snelheid (km/u)');
+      data.addColumn('number', 'Kostprijs overnachting (EUR)');
+
+      data.addRows([
+        ['Zo 9 aug.', 141.44, 59.9, 26.1, 20],
+        ['Ma 10 aug.', 142.18, 61.8, 27.1, 18.7],
+        ['Di 11 aug.', 168.31, 53.6, 22.6, 25],
+        ['Wo 12 aug.', 115.31, 59.2, 22.1, 10],
+        ['Do 13 aug.', 109.3, 59, 21, 27.6],
+        ['Vr 14 aug.', 138.51, 70, 23.4, 69],
+        ['Za 15 aug.', 144.24, 46.3, 19.2, 64.4],
+        ['Zo 16 aug.', 108.49, 59.7, 21.6, 20],
+        ['Ma 17 aug.', 164.10, 48.6, 22.1, 11],
+        ['Di 18 aug.', 0, 0, 0, 11],
+        ['Wo 19 aug.', 121.71, 50.6, 22.3, 46.5],
+        ['Do 20 aug.', 81.85, 43.1, 23.1, 0]
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Overzicht',
+          subtitle: 'Totale afstand 1435km'
+        }
+      };
+
+      var material = new google.charts.Bar(document.getElementById('chart_overview'));
+      material.draw(data, options);
     }
-  }
+  </script>
 
-  // Color scale
-  var color = d3.scale.category20();
-  var chartHeight = barHeight * zippedData.length + gapBetweenGroups * data.labels.length;
+  <script>
+    google.load('visualization', '1', {packages: ['corechart', 'bar']});
+    google.setOnLoadCallback(drawTitleSubtitle);
 
-  var x = d3.scale.linear()
-      .domain([0, d3.max(zippedData)])
-      .range([0, chartWidth]);
+    function drawTitleSubtitle() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Dag');
+      data.addColumn('number', 'Afstand in km');
 
-  var y = d3.scale.linear()
-      .range([chartHeight + gapBetweenGroups, 0]);
+      data.addRows([
+        ['Zo 9 aug.', 141.44],
+        ['Ma 10 aug.', 142.18],
+        ['Di 11 aug.', 168.31],
+        ['Wo 12 aug.', 115.31],
+        ['Do 13 aug.', 109.3],
+        ['Vr 14 aug.', 138.51],
+        ['Za 15 aug.', 144.24],
+        ['Zo 16 aug.', 108.49],
+        ['Ma 17 aug.', 164.10],
+        ['Di 18 aug.', 0],
+        ['Wo 19 aug.', 121.71],
+        ['Do 20 aug.', 81.85]
+      ]);
 
-  var yAxis = d3.svg.axis()
-      .scale(y)
-      .tickFormat('')
-      .tickSize(0)
-      .orient("left");
+      var options = {
+        chart: {
+          title: 'Afstand per dag',
+          subtitle: 'In km'
+        },
+        legend: { position: 'none' }
+      };
 
-  // Specify the chart area and dimensions
-  var chart = d3.select(".chart")
-      .attr("width", spaceForLabels + chartWidth + spaceForLegend)
-      .attr("height", chartHeight);
+      var material = new google.charts.Bar(document.getElementById('chart_distance'));
+      material.draw(data, options);
+    }
+  </script>
 
-  // Create bars
-  var bar = chart.selectAll("g")
-      .data(zippedData)
-      .enter().append("g")
-      .attr("transform", function(d, i) {
-        return "translate(" + spaceForLabels + "," + (i * barHeight + gapBetweenGroups * (0.5 + Math.floor(i/data.series.length))) + ")";
-      });
+  <script>
+    google.load('visualization', '1', {packages: ['corechart', 'bar']});
+    google.setOnLoadCallback(drawTitleSubtitle);
 
-  // Create rectangles of the correct width
-  bar.append("rect")
-      .attr("fill", function(d,i) { return color(i % data.series.length); })
-      .attr("class", "bar")
-      .attr("width", x)
-      .attr("height", barHeight - 1);
+    function drawTitleSubtitle() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Dag');
+      data.addColumn('number', 'Maximale snelheid (km/u)');
 
-  // Add text label in bar
-  bar.append("text")
-      .attr("x", function(d) { return x(d) - 3; })
-      .attr("y", barHeight / 2)
-      .attr("fill", "red")
-      .attr("dy", ".35em")
-      .text(function(d) { return d; });
+      data.addRows([
+        ['Zo 9 aug.', 59.9],
+        ['Ma 10 aug.', 61.8],
+        ['Di 11 aug.', 53.6],
+        ['Wo 12 aug.', 59.2],
+        ['Do 13 aug.', 59],
+        ['Vr 14 aug.', 70],
+        ['Za 15 aug.', 46.3],
+        ['Zo 16 aug.', 59.7],
+        ['Ma 17 aug.', 48.6],
+        ['Di 18 aug.', 0],
+        ['Wo 19 aug.', 50.6],
+        ['Do 20 aug.', 43.1]
+      ]);
 
-  // Draw labels
-  bar.append("text")
-      .attr("class", "label")
-      .attr("x", function(d) { return - 10; })
-      .attr("y", groupHeight / 2)
-      .attr("dy", ".35em")
-      .text(function(d,i) {
-        if (i % data.series.length === 0)
-          return data.labels[Math.floor(i/data.series.length)];
-        else
-          return ""});
+      var options = {
+        chart: {
+          title: 'Maximale snelheid',
+          subtitle: 'In km per uur'
+        },
+        legend: { position: 'none' },
+        colors: ['#DB4437']
+      };
 
-  chart.append("g")
-      .attr("class", "y axis")
-      .attr("transform", "translate(" + spaceForLabels + ", " + -gapBetweenGroups/2 + ")")
-      .call(yAxis);
+      var material = new google.charts.Bar(document.getElementById('chart_max'));
+      material.draw(data, options);
+    }
+  </script>
 
-  // Draw legend
-  var legendRectSize = 18,
-      legendSpacing  = 4;
+  <script>
+    google.load('visualization', '1', {packages: ['corechart', 'bar']});
+    google.setOnLoadCallback(drawTitleSubtitle);
 
-  var legend = chart.selectAll('.legend')
-      .data(data.series)
-      .enter()
-      .append('g')
-      .attr('transform', function (d, i) {
-        var height = legendRectSize + legendSpacing;
-        var offset = -gapBetweenGroups/2;
-        var horz = spaceForLabels + chartWidth + 40 - legendRectSize;
-        var vert = i * height - offset;
-        return 'translate(' + horz + ',' + vert + ')';
-      });
+    function drawTitleSubtitle() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Dag');
+      data.addColumn('number', 'Gemiddelde snelheid (km/u)');
 
-  legend.append('rect')
-      .attr('width', legendRectSize)
-      .attr('height', legendRectSize)
-      .style('fill', function (d, i) { return color(i); })
-      .style('stroke', function (d, i) { return color(i); });
+      data.addRows([
+        ['Zo 9 aug.', 26.1],
+        ['Ma 10 aug.', 27.1],
+        ['Di 11 aug.', 22.6],
+        ['Wo 12 aug.', 22.1],
+        ['Do 13 aug.', 21],
+        ['Vr 14 aug.', 23.4],
+        ['Za 15 aug.', 19.2],
+        ['Zo 16 aug.', 21.6],
+        ['Ma 17 aug.', 22.1],
+        ['Di 18 aug.', 0],
+        ['Wo 19 aug.', 22.3],
+        ['Do 20 aug.', 23.1]
+      ]);
 
-  legend.append('text')
-      .attr('class', 'legend')
-      .attr('x', legendRectSize + legendSpacing)
-      .attr('y', legendRectSize - legendSpacing)
-      .text(function (d) { return d.label; });
+      var options = {
+        chart: {
+          title: 'Gemiddelde snelheid',
+          subtitle: 'In km per uur'
+        },
+        legend: { position: 'none' },
+        colors: ['#F4B400']
+      };
 
-</script>
+      var material = new google.charts.Bar(document.getElementById('chart_avg'));
+      material.draw(data, options);
+    }
+  </script>
+
+  <script>
+    google.load('visualization', '1', {packages: ['corechart', 'bar']});
+    google.setOnLoadCallback(drawTitleSubtitle);
+
+    function drawTitleSubtitle() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Dag');
+      data.addColumn('number', 'Kostprijs overnachting in EUR');
+
+      data.addRows([
+        ['Zo 9 aug.', 20],
+        ['Ma 10 aug.', 18.7],
+        ['Di 11 aug.', 25],
+        ['Wo 12 aug.', 10],
+        ['Do 13 aug.', 27.6],
+        ['Vr 14 aug.', 69],
+        ['Za 15 aug.', 64.4],
+        ['Zo 16 aug.', 20],
+        ['Ma 17 aug.', 11],
+        ['Di 18 aug.', 11],
+        ['Wo 19 aug.', 46.5],
+        ['Do 20 aug.', 0]
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Kostprijs overnachting',
+          subtitle: 'In EUR'
+        },
+        legend: {position: 'none'},
+        colors: ['#0F9D58']
+      };
+
+      var material = new google.charts.Bar(document.getElementById('chart_cost'));
+      material.draw(data, options);
+    }
+  </script>
+
+</body>
+</html>
