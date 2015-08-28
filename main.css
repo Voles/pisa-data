@@ -1,5 +1,5 @@
 body {
-    padding: 50px;
+    padding: 0 0 50px 0;
 }
 
 .heading {
@@ -23,8 +23,8 @@ body {
 }
 
 #pisa {
-    background: url('images/pisa.png') no-repeat center bottom scroll;
+    background: url('images/pisa.png') no-repeat center center scroll;
     background-size: cover;
     padding: 50px;
-    min-height: 500px;
+    min-height: 425px;
 }
