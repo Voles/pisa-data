@@ -28,3 +28,13 @@ body {
     padding: 50px;
     min-height: 425px;
 }
+
+.map {
+    height: 750px;
+    overflow: hidden;
+}
+
+iframe {
+    position: relative;
+    top: -40px;
+}
