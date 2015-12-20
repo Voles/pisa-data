@@ -76,11 +76,13 @@
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script>if (!window.jQuery) { document.write('<script src="bower_components/jquery/dist/jquery.min.js"><\/script>'); }</script>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
+  <script type="text/javascript"
+          src="https://www.gstatic.com/charts/loader.js"></script>
 
   <script>
-    google.load('visualization', '1', {packages: ['corechart', 'bar']});
-    google.setOnLoadCallback(drawTitleSubtitle);
+    google.charts.load('43', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawTitleSubtitle);
 
     function drawTitleSubtitle() {
       var data = new google.visualization.DataTable();
@@ -118,10 +120,10 @@
   </script>
 
   <script>
-    google.load('visualization', '1', {packages: ['corechart', 'bar']});
-    google.setOnLoadCallback(drawTitleSubtitle);
+    google.charts.setOnLoadCallback(drawTitleSubtitle);
 
     function drawTitleSubtitle() {
+      console.log('drawTitleSubtitle');
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Dag');
       data.addColumn('number', 'Afstand in km');
@@ -155,8 +157,7 @@
   </script>
 
   <script>
-    google.load('visualization', '1', {packages: ['corechart', 'bar']});
-    google.setOnLoadCallback(drawTitleSubtitle);
+    google.charts.setOnLoadCallback(drawTitleSubtitle);
 
     function drawTitleSubtitle() {
       var data = new google.visualization.DataTable();
@@ -193,8 +194,7 @@
   </script>
 
   <script>
-    google.load('visualization', '1', {packages: ['corechart', 'bar']});
-    google.setOnLoadCallback(drawTitleSubtitle);
+    google.charts.setOnLoadCallback(drawTitleSubtitle);
 
     function drawTitleSubtitle() {
       var data = new google.visualization.DataTable();
@@ -231,8 +231,7 @@
   </script>
 
   <script>
-    google.load('visualization', '1', {packages: ['corechart', 'bar']});
-    google.setOnLoadCallback(drawTitleSubtitle);
+    google.charts.setOnLoadCallback(drawTitleSubtitle);
 
     function drawTitleSubtitle() {
       var data = new google.visualization.DataTable();
