@@ -16,11 +16,11 @@ A webpage containing the data about [our trip to Pisa](http://pisa.nielsdequeker
 #### Installation
 Run the commands below in the project root directory.
 
-#####1. Install Bower
+##### 1. Install Bower
 
     $ sudo npm install -g bower
 
-#####2. Install project dependencies
+##### 2. Install project dependencies
 
     $ bower install
     
